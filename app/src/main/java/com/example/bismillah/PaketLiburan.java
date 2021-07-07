@@ -15,33 +15,46 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class PaketLiburan extends AppCompatActivity {
+    //Deklarasi Button
     Button btnCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paket_liburan);
+        //Pendefinisian Button
         btnCount = findViewById(R.id.btncount);
+        //Untuk Mengatifkan Button Count, dengan metode menyentuh lama
         btnCount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Intent Explicit , digunakan untuk pindah dari MainActivity ke Kelas Budget
                 Intent intent = new Intent(PaketLiburan.this, Budget.class);
+                //Untuk Menjalankan Activity
                 startActivity(intent);
             }
         });
+        //Membuat List View didalam  list
         final ListView list = findViewById(R.id.list);
+        //Inisialiasi ArrayList
         ArrayList<String> arrayList = new ArrayList<>();
+        //Menambah Array list
         arrayList.add("KOREAN: " + "Rp.250.000/Night");
         arrayList.add("JAPAN: " + "Rp.300.000/Night");
         arrayList.add("BALI INDONESIA: " + "Rp.150.000/Night");
         arrayList.add("LABUAN BAJO INDONESIA: " + "Rp.275.000/Night");
         arrayList.add("LOMBOK INDONESIA: " + "Rp.100.000/Night");
+        //Inisialisasi Array Adapter
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
+        //Menset arrayadapter
         list.setAdapter(arrayAdapter);
+        //Menset apabila menekan list maka akan keluar popup
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Menset item yang diklik
                 String clickedItem=(String) list.getItemAtPosition(position);
+                //Untuk set popup nya
                 Toast.makeText(PaketLiburan.this,clickedItem,Toast.LENGTH_LONG).show();
             }
         });
